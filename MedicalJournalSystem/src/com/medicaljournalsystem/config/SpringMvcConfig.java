@@ -1,4 +1,4 @@
-package com.admin.config;
+package com.medicaljournalsystem.config;
 
 import javax.sql.DataSource;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
@@ -15,13 +15,14 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import com.admin.dao.UserDAO;
-import com.admin.dao.UserDAOImpl;
-import com.admin.pojo.User;
+
+import com.medicaljournalsystem.dao.UserDAO;
+import com.medicaljournalsystem.dao.UserDAOImpl;
+import com.medicaljournalsystem.pojo.User;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.admin")
+@ComponentScan(basePackages = "com.medicaljournalsystem")
 @EnableTransactionManagement
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 

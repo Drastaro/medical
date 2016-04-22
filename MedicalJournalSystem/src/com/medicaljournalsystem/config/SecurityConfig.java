@@ -1,4 +1,4 @@
-package com.admin.config;
+package com.medicaljournalsystem.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

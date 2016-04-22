@@ -1,4 +1,4 @@
-package com.admin.controller;
+package com.medicaljournalsystem.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.admin.dao.UserDAO;
-import com.admin.pojo.User;
+import com.medicaljournalsystem.dao.UserDAO;
+import com.medicaljournalsystem.pojo.User;
 
 /**
  * Handles requests for the application home page.

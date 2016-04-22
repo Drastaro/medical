@@ -1,4 +1,4 @@
-package com.admin.config;
+package com.medicaljournalsystem.config;
 
 import org.sitemesh.builder.SiteMeshFilterBuilder;
 import org.sitemesh.config.ConfigurableSiteMeshFilter;

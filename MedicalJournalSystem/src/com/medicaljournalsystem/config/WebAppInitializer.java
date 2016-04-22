@@ -1,4 +1,4 @@
-package com.admin.config;
+package com.medicaljournalsystem.config;
 
 import javax.servlet.Filter;
 import org.springframework.web.filter.CharacterEncodingFilter;

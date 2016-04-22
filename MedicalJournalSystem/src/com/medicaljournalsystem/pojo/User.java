@@ -1,4 +1,4 @@
-package com.admin.pojo;
+package com.medicaljournalsystem.pojo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

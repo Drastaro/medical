@@ -1,4 +1,4 @@
-package com.admin.controller;
+package com.medicaljournalsystem.controller;
 
 import java.text.DateFormat;
 import java.util.Date;

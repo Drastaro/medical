@@ -1,8 +1,8 @@
-package com.admin.dao;
+package com.medicaljournalsystem.dao;
 
 import java.util.List;
 
-import com.admin.pojo.User;
+import com.medicaljournalsystem.pojo.User;
 
 public interface UserDAO {
 
