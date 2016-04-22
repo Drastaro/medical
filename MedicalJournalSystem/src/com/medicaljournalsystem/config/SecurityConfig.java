@@ -26,13 +26,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests().antMatchers("/", "/home").authenticated().antMatchers("/listusers")
-				.hasAuthority("ADMIN").antMatchers("/medicaljournal/").hasAuthority("ADMIN")
+				.hasAuthority("ADMIN").antMatchers("/medicaljournal/list/").hasAuthority("ADMIN")
 				.antMatchers("/medicaljournals/add").hasAuthority("ADMIN").antMatchers("/medicaljournals/edit")
 				.hasAuthority("ADMIN").antMatchers("/medicaljournals/submit").hasAuthority("ADMIN")
 				.antMatchers("/medicaljournals/delete").hasAuthority("ADMIN").antMatchers("/medicaljournals/search")
 				.authenticated().antMatchers("/medicaljournals/subscribe").authenticated().and().formLogin()
 				.loginPage("/login").loginProcessingUrl("/j_spring_security_check").usernameParameter("email")
-				.passwordParameter("password").and().csrf().and().exceptionHandling();
+				.passwordParameter("password").and().csrf().and().exceptionHandling()
+				.accessDeniedPage("/pages/examples/404");
 
 	}
 }
