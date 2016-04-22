@@ -25,10 +25,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/", "/home").hasAuthority("USER").antMatchers("/db/**")
-				.access("hasRole('USER') and hasRole('DBA')").and().formLogin().loginPage("/login")
-				.loginProcessingUrl("/j_spring_security_check").usernameParameter("email").passwordParameter("password")
-				.and().csrf().and().exceptionHandling();
+		http.authorizeRequests().antMatchers("/", "/home").authenticated().antMatchers("/listusers")
+				.hasAuthority("ADMIN").antMatchers("/medicaljournal/").hasAuthority("ADMIN")
+				.antMatchers("/medicaljournals/add").hasAuthority("ADMIN").antMatchers("/medicaljournals/edit")
+				.hasAuthority("ADMIN").antMatchers("/medicaljournals/submit").hasAuthority("ADMIN")
+				.antMatchers("/medicaljournals/delete").hasAuthority("ADMIN").antMatchers("/medicaljournals/search")
+				.authenticated().antMatchers("/medicaljournals/subscribe").authenticated().and().formLogin()
+				.loginPage("/login").loginProcessingUrl("/j_spring_security_check").usernameParameter("email")
+				.passwordParameter("password").and().csrf().and().exceptionHandling();
 
 	}
 }
