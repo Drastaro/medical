@@ -36,7 +36,7 @@ public class MedicalJournal {
 	private String fileName;
 
 	@ManyToMany(mappedBy = "subscribedMedicalJournals")
-	private Set<User> users = new HashSet<User>();
+	private Set<Users> users = new HashSet<Users>();
 
 	@Transient
 	private MultipartFile pdfFile;

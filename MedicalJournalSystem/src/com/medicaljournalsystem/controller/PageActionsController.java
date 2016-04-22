@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.medicaljournalsystem.dao.UserDAO;
-import com.medicaljournalsystem.pojo.User;
+import com.medicaljournalsystem.pojo.Users;
 
 /**
  * Handles requests for the application home page.
@@ -109,12 +109,12 @@ public class PageActionsController {
 	@RequestMapping(value = "/adduser", method = RequestMethod.GET)
 	public ModelAndView createUser() {
 
-		return new ModelAndView("admin/registrationForm", "command", new User());
+		return new ModelAndView("admin/registrationForm", "command", new Users());
 
 	}
 
 	@RequestMapping(value = "/submitUser", method = RequestMethod.POST)
-	public ModelAndView saveUser(@ModelAttribute("command") User user, BindingResult result, ModelMap model) {
+	public ModelAndView saveUser(@ModelAttribute("command") Users user, BindingResult result, ModelMap model) {
 		userDao.saveOrUpdate(user);
 		return new ModelAndView("redirect:/");
 	}
@@ -122,7 +122,7 @@ public class PageActionsController {
 	@RequestMapping(value = "/listusers", method = RequestMethod.GET)
 	public ModelAndView listUsers() {
 
-		List<User> listUsers = userDao.list();
+		List<Users> listUsers = userDao.list();
 		ModelMap model = new ModelMap();
 		model.put("users", listUsers);
 
