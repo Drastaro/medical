@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -99,8 +100,8 @@ public class MedicalJournalController {
 		List<MedicalJournal> listJournals = medicalJournalDao.find(query);
 		// for all medicalJournals in list set if subscribed by current user
 		for (MedicalJournal medicalJournal : listJournals) {
-			System.out.println("MedJur " + medicalJournal.getId() + "    - user id " + currentUser.getId());
-			if (medicalJournal.getUsers().contains(currentUser)) {
+			if (medicalJournal.getUsers().stream().filter(s -> s.getId() == currentUser.getId()).findFirst()
+					.isPresent()) {
 				medicalJournal.setSubscribedByCurrentUser(true);
 			}
 		}
@@ -117,17 +118,26 @@ public class MedicalJournalController {
 			@RequestParam(value = "id", required = true) Integer journalId, Principal principal) {
 
 		Users currentUser = userDao.getByEmail(principal.getName());
-		MedicalJournal journal = medicalJournalDao.get(journalId);
-		if (journal != null) {
-			if (subscribe)
-				currentUser.getSubscribedMedicalJournals().add(journal);
-			else
-				currentUser.getSubscribedMedicalJournals().remove(journal);
-			userDao.saveOrUpdate(currentUser);
-			return "true";
-		} else {
 
-			return "false";
+		if (subscribe) {
+			MedicalJournal journal = medicalJournalDao.get(journalId);
+			if (journal != null) {
+				currentUser.getSubscribedMedicalJournals().add(journal);
+				userDao.saveOrUpdate(currentUser);
+				return "true";
+			} else {
+				return "false";
+			}
+		} else {
+			Optional<MedicalJournal> medJ = currentUser.getSubscribedMedicalJournals().stream()
+					.filter(j -> j.getId() == journalId).findFirst();
+			if (medJ.isPresent()) {
+				currentUser.getSubscribedMedicalJournals().remove(medJ.get());
+				userDao.saveOrUpdate(currentUser);
+				return "true";
+			} else {
+				return "false";
+			}
 		}
 	}
 }
