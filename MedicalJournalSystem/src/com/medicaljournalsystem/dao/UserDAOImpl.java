@@ -10,9 +10,9 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.medicaljournalsystem.pojo.User;
+import com.medicaljournalsystem.pojo.Users;
 
-@Repository
+@Repository("userDao")
 public class UserDAOImpl implements UserDAO {
 
 	@Autowired
@@ -28,9 +28,8 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	@Transactional
-	public List<User> list() {
-		// @SuppressWarnings("unchecked")
-		Criteria cr = sessionFactory.getCurrentSession().createCriteria(User.class);
+	public List<Users> list() {
+		Criteria cr = sessionFactory.getCurrentSession().createCriteria(Users.class);
 		List results = cr.list();
 
 		return results;
@@ -38,52 +37,40 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	@Transactional
-	public User get(int id) {
-		Criteria cr = sessionFactory.getCurrentSession().createCriteria(User.class);
+	public Users getByID(int id) {
+		Criteria cr = sessionFactory.getCurrentSession().createCriteria(Users.class);
 		cr.add(Restrictions.eq("id", id)).uniqueResult();
 		List results = cr.list();
-		User user = (User) results.get(0);
+		Users user = (Users) results.get(0);
 
 		return user;
-
 	}
 
 	@Override
 	@Transactional
-	public User getByEmail(String email) {
-		Criteria cr = sessionFactory.getCurrentSession().createCriteria(User.class);
+	public Users getByEmail(String email) {
+		Criteria cr = sessionFactory.getCurrentSession().createCriteria(Users.class);
 		cr.add(Restrictions.eq("email", email)).uniqueResult();
 		List results = cr.list();
-		if (results.size() > 0)
-			return (User) results.get(0);
-		else
-			return null;
-
-	}
-
-	@Transactional
-	public User get(String email) {
-		Criteria cr = sessionFactory.getCurrentSession().createCriteria(User.class);
-		cr.add(Restrictions.eq("email", email)).uniqueResult();
-		List results = cr.list();
-		User user = (User) results.get(0);
+		Users user = (Users) results.get(0);
 
 		return user;
-
 	}
 
 	@Override
 	@Transactional
-	public void saveOrUpdate(User user) {
+	public void saveOrUpdate(Users user) {
 		sessionFactory.getCurrentSession().saveOrUpdate(user);
+
 	}
 
 	@Override
 	@Transactional
 	public void delete(int id) {
-		User userToDelete = new User();
+		Users userToDelete = new Users();
 		userToDelete.setId(id);
 		sessionFactory.getCurrentSession().delete(userToDelete);
+
 	}
 
 }

@@ -26,7 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.medicaljournalsystem.dao.UserDAO;
 import com.medicaljournalsystem.dao.medicaljournal.MedicalJournalDAO;
 import com.medicaljournalsystem.pojo.MedicalJournal;
-import com.medicaljournalsystem.pojo.User;
+import com.medicaljournalsystem.pojo.Users;
 
 @Controller
 @RequestMapping(value = "medicaljournals")
@@ -94,7 +94,7 @@ public class MedicalJournalController {
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView searchJournals(@RequestParam(value = "q", required = false) String query, Principal principal) {
 
-		User currentUser = userDao.getByEmail(principal.getName());
+		Users currentUser = userDao.getByEmail(principal.getName());
 
 		List<MedicalJournal> listJournals = medicalJournalDao.find(query);
 		// for all medicalJournals in list set if subscribed by current user
@@ -116,7 +116,7 @@ public class MedicalJournalController {
 	public String searchJournals(@RequestParam(value = "sub", required = true) boolean subscribe,
 			@RequestParam(value = "id", required = true) Integer journalId, Principal principal) {
 
-		User currentUser = userDao.getByEmail(principal.getName());
+		Users currentUser = userDao.getByEmail(principal.getName());
 		MedicalJournal journal = medicalJournalDao.get(journalId);
 		if (journal != null) {
 			if (subscribe)

@@ -22,7 +22,7 @@ import com.medicaljournalsystem.dao.UserDAO;
 import com.medicaljournalsystem.dao.UserDAOImpl;
 import com.medicaljournalsystem.dao.medicaljournal.MedicalJournalDAOImpl;
 import com.medicaljournalsystem.pojo.MedicalJournal;
-import com.medicaljournalsystem.pojo.User;
+import com.medicaljournalsystem.pojo.Users;
 
 @Configuration
 @EnableWebMvc
@@ -59,8 +59,8 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/medical_journal");
-		dataSource.setUsername("java");
-		dataSource.setPassword("java");
+		dataSource.setUsername("root");
+		dataSource.setPassword("");
 
 		return dataSource;
 	}
@@ -70,7 +70,7 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 	public SessionFactory getSessionFactory(DataSource dataSource) {
 
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-		sessionBuilder.addAnnotatedClasses(User.class);
+		sessionBuilder.addAnnotatedClasses(Users.class);
 		sessionBuilder.addAnnotatedClasses(MedicalJournal.class);
 		sessionBuilder.setProperty("hibernate.show_sql", "true");
 		sessionBuilder.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
