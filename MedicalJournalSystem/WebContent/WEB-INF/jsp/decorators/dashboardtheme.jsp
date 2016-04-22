@@ -85,7 +85,7 @@
 					<li><a href="${pageContext.request.contextPath}/listusers">
 							<i class="fa fa-user" aria-hidden="true"></i><span>Users</span>
 					</a></li>
-					<li><a href="${pageContext.request.contextPath}/medicaljournals/">
+					<li><a href="${pageContext.request.contextPath}/medicaljournals/list">
 							<i class="fa fa-user" aria-hidden="true"></i><span>Medical Journals</span>
 					</a></li>
 					<li><a href="${pageContext.request.contextPath}/medicaljournals/search">

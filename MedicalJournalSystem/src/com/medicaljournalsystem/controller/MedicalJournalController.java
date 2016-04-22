@@ -82,7 +82,7 @@ public class MedicalJournalController {
 		return "redirect:/medicaljournals/";
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView listJournals() {
 
 		List<MedicalJournal> listJournals = medicalJournalDao.list();
