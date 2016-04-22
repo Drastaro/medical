@@ -113,7 +113,7 @@ public class MedicalJournalController {
 
 	@RequestMapping(value = "/subscribe", method = RequestMethod.GET, produces = "text/plain")
 	@ResponseBody
-	public String searchJournals(@RequestParam(value = "sub", required = true) boolean subscribe,
+	public String subscribeToJournal(@RequestParam(value = "sub", required = true) boolean subscribe,
 			@RequestParam(value = "id", required = true) Integer journalId, Principal principal) {
 
 		Users currentUser = userDao.getByEmail(principal.getName());
