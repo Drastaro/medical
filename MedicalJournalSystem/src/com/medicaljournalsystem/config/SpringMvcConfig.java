@@ -1,6 +1,7 @@
 package com.medicaljournalsystem.config;
 
 import javax.sql.DataSource;
+
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.medicaljournalsystem.dao.UserDAO;
 import com.medicaljournalsystem.dao.UserDAOImpl;
+import com.medicaljournalsystem.dao.medicaljournal.MedicalJournalDAOImpl;
+import com.medicaljournalsystem.pojo.MedicalJournal;
 import com.medicaljournalsystem.pojo.User;
 
 @Configuration
@@ -60,6 +63,7 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 		sessionBuilder.addAnnotatedClasses(User.class);
+		sessionBuilder.addAnnotatedClasses(MedicalJournal.class);
 		sessionBuilder.setProperty("hibernate.show_sql", "true");
 		sessionBuilder.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 		sessionBuilder.setProperty("hibernate.hbm2ddl.auto", "update");
@@ -79,6 +83,12 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 	@Bean(name = "userDao")
 	public UserDAO getUserDao(SessionFactory sessionFactory) {
 		return new UserDAOImpl(sessionFactory);
+	}
+
+	@Autowired
+	@Bean(name = "medicalJournalDao")
+	public MedicalJournalDAOImpl getMedicalJournalDao(SessionFactory sessionFactory) {
+		return new MedicalJournalDAOImpl(sessionFactory);
 	}
 
 }

@@ -85,11 +85,10 @@
 					<li><a href="${pageContext.request.contextPath}/listusers">
 							<i class="fa fa-user" aria-hidden="true"></i><span>Users</span>
 					</a></li>
-					<li class="treeview"><a href="#"><i class="fa fa-users"
-							aria-hidden="true"></i><span>Groups</span> </a></li>
-					<li class="treeview"><a href="#"><i class="fa fa-cog"
-							aria-hidden="true"></i> <span>Settings</span> </a></li>
-
+					<li><a href="${pageContext.request.contextPath}/medicaljournals/list">
+							<i class="fa fa-user" aria-hidden="true"></i><span>Medical Journals</span>
+					</a></li>
+					
 				</ul>
 			</section>
 			<!-- /.sidebar -->
