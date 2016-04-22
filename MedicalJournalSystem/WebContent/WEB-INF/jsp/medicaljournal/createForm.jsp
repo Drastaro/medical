@@ -1,3 +1,5 @@
+ <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>  
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,7 +15,7 @@
         <!-- Theme style -->
         <link href="${pageContext.request.contextPath}/resources/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/datepicker/datepicker3.css">
- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>       
+  
   
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -43,22 +45,24 @@
 					<div class="box-header">
 						<h3 class="box-title"></h3>
 					
-					<form:form method="post" modelAttribute="journal" action="submit">
+					<c:url var="saveAction" value="/medicaljournals/submit" ></c:url>
+					<form:form method="post" modelAttribute="journal" action="${saveAction}?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
 						<form:hidden path="id" />
 						<div class="box-body">
 							<div class="form-group">
 								<label for="title">Title</label> 
-								<input type="text" class="form-control" id="title" name="title"
-									placeholder="Enter journal title" >
+								<form:input type="text" class="form-control" id="title" name="title"
+									placeholder="Enter journal title"  path="title" />
 							</div>
 							<div class="form-group">
 								<label for="description">Description</label> 
-								<input type="text" class="form-control" id="description" name="description"
-									placeholder="Enter journal description" >
+								<form:input type="text" class="form-control" id="description" name="description"
+									placeholder="Enter journal description" path="description" />
 							</div>
 							<div class="form-group">
-								<label for="inputFile">Journal file (*.pdf)</label> <input
-									type="file" id="inputFile">
+								<label for="inputFile">Journal file (*.pdf)</label> 
+								<form:input
+									type="file" id="inputFile" path="pdfFile"/>
 							</div>
 							<!-- Date range -->
 						<div class="form-group">
@@ -67,8 +71,8 @@
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="text" class="form-control pull-right" name="releaseDate"
-									id="releaseDate" />
+								<form:input type="text" class="form-control pull-right" name="releaseDate"
+									id="releaseDate" path="releaseDate" />
 							</div>
 							<!-- /.input group -->
 						</div>

@@ -14,4 +14,6 @@ public interface MedicalJournalDAO {
 
 	public void delete(int id);
 
+	public List<MedicalJournal> find(String query);
+
 }
