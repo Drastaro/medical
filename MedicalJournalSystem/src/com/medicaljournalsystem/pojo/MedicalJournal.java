@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,11 +36,14 @@ public class MedicalJournal {
 	@Column
 	private String fileName;
 
-	@ManyToMany(mappedBy = "subscribedMedicalJournals")
+	@ManyToMany(mappedBy = "subscribedMedicalJournals", fetch = FetchType.EAGER)
 	private Set<User> users = new HashSet<User>();
 
 	@Transient
 	private MultipartFile pdfFile;
+
+	@Transient
+	private boolean subscribedByCurrentUser = false;
 
 	public MedicalJournal() {
 
@@ -99,6 +103,22 @@ public class MedicalJournal {
 
 	public void setPdfFile(MultipartFile pdfFile) {
 		this.pdfFile = pdfFile;
+	}
+
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
+
+	public boolean isSubscribedByCurrentUser() {
+		return subscribedByCurrentUser;
+	}
+
+	public void setSubscribedByCurrentUser(boolean subscribedByCurrentUser) {
+		this.subscribedByCurrentUser = subscribedByCurrentUser;
 	}
 
 }

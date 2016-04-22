@@ -2,6 +2,7 @@ package com.medicaljournalsystem.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,8 +23,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.medicaljournalsystem.dao.UserDAO;
 import com.medicaljournalsystem.dao.medicaljournal.MedicalJournalDAO;
 import com.medicaljournalsystem.pojo.MedicalJournal;
+import com.medicaljournalsystem.pojo.User;
 
 @Controller
 @RequestMapping(value = "medicaljournals")
@@ -31,6 +34,8 @@ public class MedicalJournalController {
 
 	@Autowired
 	private MedicalJournalDAO medicalJournalDao;
+	@Autowired
+	private UserDAO userDao;
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView createJournal(Model model) {
@@ -87,9 +92,18 @@ public class MedicalJournalController {
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public ModelAndView searchJournals(@RequestParam(value = "q", required = false) String query) {
+	public ModelAndView searchJournals(@RequestParam(value = "q", required = false) String query, Principal principal) {
+
+		User currentUser = userDao.getByEmail(principal.getName());
 
 		List<MedicalJournal> listJournals = medicalJournalDao.find(query);
+		// for all medicalJournals in list set if subscribed by current user
+		for (MedicalJournal medicalJournal : listJournals) {
+			System.out.println("MedJur " + medicalJournal.getId() + "    - user id " + currentUser.getId());
+			if (medicalJournal.getUsers().contains(currentUser)) {
+				medicalJournal.setSubscribedByCurrentUser(true);
+			}
+		}
 		ModelMap model = new ModelMap();
 		model.put("query", query);
 		model.put("journals", listJournals);
@@ -99,9 +113,21 @@ public class MedicalJournalController {
 
 	@RequestMapping(value = "/subscribe", method = RequestMethod.GET, produces = "text/plain")
 	@ResponseBody
-	public String searchJournals(@RequestParam(value = "sub", required = true) boolean sub,
-			@RequestParam(value = "id", required = true) Integer journalId) {
+	public String searchJournals(@RequestParam(value = "sub", required = true) boolean subscribe,
+			@RequestParam(value = "id", required = true) Integer journalId, Principal principal) {
 
-		return "subscribed";
+		User currentUser = userDao.getByEmail(principal.getName());
+		MedicalJournal journal = medicalJournalDao.get(journalId);
+		if (journal != null) {
+			if (subscribe)
+				currentUser.getSubscribedMedicalJournals().add(journal);
+			else
+				currentUser.getSubscribedMedicalJournals().remove(journal);
+			userDao.saveOrUpdate(currentUser);
+			return "true";
+		} else {
+
+			return "false";
+		}
 	}
 }

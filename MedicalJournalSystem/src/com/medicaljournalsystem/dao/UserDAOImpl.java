@@ -48,6 +48,19 @@ public class UserDAOImpl implements UserDAO {
 
 	}
 
+	@Override
+	@Transactional
+	public User getByEmail(String email) {
+		Criteria cr = sessionFactory.getCurrentSession().createCriteria(User.class);
+		cr.add(Restrictions.eq("email", email)).uniqueResult();
+		List results = cr.list();
+		if (results.size() > 0)
+			return (User) results.get(0);
+		else
+			return null;
+
+	}
+
 	@Transactional
 	public User get(String email) {
 		Criteria cr = sessionFactory.getCurrentSession().createCriteria(User.class);

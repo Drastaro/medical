@@ -88,8 +88,16 @@
 										<td>${journal.releaseDate}</td>
 										<td>${journal.fileName}</td>
 										<td>
-											<button type="button" class="btn btn-primary subscribe-btn" data-id="${journal.id}">Subscribe</button>
-											<button type="button" class="btn btn-primary unsubscribe-btn" data-id="${journal.id}">Unsubscribe</button>
+											<c:choose>
+									            <c:when test="${journal.subscribedByCurrentUser==true}">
+									               <button type="button" class="btn btn-primary subscribe-btn" style="display: none"id="btn-sub-${journal.id}" data-id="${journal.id}">Subscribe</button>
+									               <button type="button" class="btn btn-danger unsubscribe-btn" id="btn-unsub-${journal.id}" data-id="${journal.id}">Unsubscribe</button>
+									            </c:when>
+									            <c:otherwise>
+									               <button type="button" class="btn btn-primary subscribe-btn"  id="btn-sub-${journal.id}" data-id="${journal.id}">Subscribe</button>
+									               <button type="button" class="btn btn-danger unsubscribe-btn" style="display: none" id="btn-unsub-${journal.id}" data-id="${journal.id}">Unsubscribe</button>
+									            </c:otherwise>
+									        </c:choose>
 										</td>
 									</tr>
 								</c:forEach>
@@ -140,38 +148,72 @@
 	<script type="text/javascript">
 		$(function() {
 			$("#example1").dataTable();
-			$('.subscribe-btn').each(function () {
-			    var $this = $(this);
-			    $this.on("click", function() {
-			    	
-		        $.ajax({
-		            url : '${pageContext.request.contextPath}/medicaljournals/subscribe?sub=true&id='+$(this).data('id'),
-		            success : function(data) {
-		                alert(data);
-		            	$('#result').html(data);
-		            }
-		        });
-			    });
+			
+		
+				
+				$('.subscribe-btn').on("click",function() {
+					$this = $(this);
+					$.ajax({
+			            url : '${pageContext.request.contextPath}/medicaljournals/subscribe?sub=true&id='+$this.data('id'),
+			            success : function(data) {
+			                unSubBtnId="#btn-unsub-"+$this.data('id');
+			                $(unSubBtnId).show();
+			                $this.hide();
+			            }
+			        });
+				});
+				$('.unsubscribe-btn').on("click",function() {
+					$this = $(this);
+					$.ajax({
+			            url : '${pageContext.request.contextPath}/medicaljournals/subscribe?sub=false&id='+$this.data('id'),
+			            success : function(data) {
+			                subBtnId="#btn-sub-"+$this.data('id');
+			                $this.hide();
+			                $(subBtnId).show();
+			            }
+			        });
+				});
+	
+			
+			
+			/*$('.subscribe-btn').each(function () {
+				$this = $(this);
+				$this.on("click",function() {
+					$.ajax({
+			            url : '${pageContext.request.contextPath}/medicaljournals/subscribe?sub=true&id='+$this.data('id'),
+			            success : function(data) {
+			                alert(data);
+			                unSubBtnId="#btn-unsub-"+$this.data('id');
+			                $(unSubBtnId).show();
+			                $this.hide();
+			                
+			               // $this.removeClass('.subscribe-btn').removeClass('btn-primary');
+			               // $this.addClass('.unsubscribe-btn').addClass('btn-danger');
+			               // $this.unbind('click');
+			               // $this.on("click", unSubscribe($this));
+			            }
+			        });
+				});
 			});
-
-
 			
 			$('.unsubscribe-btn').each(function () {
-			    var $this = $(this);
-			    $this.on("click", function() {
-			    	
-		        $.ajax({
-		            url : '${pageContext.request.contextPath}/medicaljournals/subscribe?sub=false&id='+$(this).data('id'),
-		            success : function(data) {
-		                alert(data);
-		            	$('#result').html(data);
-		            }
-		        });
-			    });
-			});
-			
+				$(this).on("click",function() {
+					$.ajax({
+			            url : '${pageContext.request.contextPath}/medicaljournals/subscribe?sub=true&id='+$this.data('id'),
+			            success : function(data) {
+			                alert(data);
+			                $this.removeClass('.unsubscribe-btn').removeClass('btn-danger');
+			                $this.addClass('.subscribe-btn').addClass('btn-primary');
+			                $this.unbind('click');
+			               // $this.on("click", subscribe($this));
+			            }
+			        });
+				});
+			});*/
+
 			
 		});
+		
 	</script>
 
 </body>
