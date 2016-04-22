@@ -82,16 +82,23 @@
 						href="${pageContext.request.contextPath}/"><i
 							class="fa fa-file-text-o" aria-hidden="true"></i><span>Document</span>
 					</a></li>
-					<li><a href="${pageContext.request.contextPath}/listusers">
-							<i class="fa fa-user" aria-hidden="true"></i><span>Users</span>
-					</a></li>
-					<li><a href="${pageContext.request.contextPath}/medicaljournals/list">
-							<i class="fa fa-user" aria-hidden="true"></i><span>Medical Journals</span>
-					</a></li>
-					<li><a href="${pageContext.request.contextPath}/medicaljournals/search">
-							<i class="fa fa-user" aria-hidden="true"></i><span>Search Medical Journals</span>
-					</a></li>
-					
+					<sec:authorize access="hasAnyRole('ADMIN')">
+						<li><a href="${pageContext.request.contextPath}/listusers">
+								<i class="fa fa-user" aria-hidden="true"></i><span>Users</span>
+						</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/medicaljournals/list"> <i
+								class="fa fa-user" aria-hidden="true"></i><span>Medical
+									Journals</span>
+						</a></li>
+					</sec:authorize>
+					<sec:authorize access="isAuthenticated()">
+						<li><a
+							href="${pageContext.request.contextPath}/medicaljournals/search">
+								<i class="fa fa-user" aria-hidden="true"></i><span>Search
+									Medical Journals</span>
+						</a></li>
+					</sec:authorize>
 				</ul>
 			</section>
 			<!-- /.sidebar -->
