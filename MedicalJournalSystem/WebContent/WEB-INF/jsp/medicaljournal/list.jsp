@@ -3,12 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Medical Journal System</title>
-<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+<meta
+	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
+	name='viewport'>
 
-<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"	rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/resources/css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/resources/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+<link
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="${pageContext.request.contextPath}/resources/css/datatables/dataTables.bootstrap.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="${pageContext.request.contextPath}/resources/css/AdminLTE.css"
+	rel="stylesheet" type="text/css" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
@@ -41,15 +51,16 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="journal" items="${model.journals}" varStatus="status">
+								<c:forEach var="journal" items="${model.journals}"
+									varStatus="status">
 									<tr>
 										<td>${journal.id}</td>
 										<td>${journal.title}</td>
 										<td>${journal.description}</td>
 										<td>${journal.releaseDate}</td>
 										<td>${journal.fileName}</td>
-										<td>
-											<a href="${pageContext.request.contextPath}/medicaljournals/edit/${journal.id}"
+										<td><a
+											href="${pageContext.request.contextPath}/medicaljournals/edit/${journal.id}"
 											class="btn btn-warning userdata-btn btn-edit">EDIT</a><a
 											href="${pageContext.request.contextPath}/medicaljournals/delete/${journal.id}"
 											class="btn btn-danger userdata-btn btn-delete">DELETE</a></td>
@@ -77,15 +88,24 @@
 		</div>
 	</section>
 
-	<script	src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-	<script	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
-	<script	src="${pageContext.request.contextPath}/resources/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
-	<script	src="${pageContext.request.contextPath}/resources/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
-	<script	src="${pageContext.request.contextPath}/resources/js/AdminLTE/app.js" type="text/javascript"></script>
-	
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"
+		type="text/javascript"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/plugins/datatables/jquery.dataTables.js"
+		type="text/javascript"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/plugins/datatables/dataTables.bootstrap.js"
+		type="text/javascript"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/AdminLTE/app.js"
+		type="text/javascript"></script>
+
 	<!-- page script -->
 	<script type="text/javascript">
-	
+		
 	</script>
 
 </body>

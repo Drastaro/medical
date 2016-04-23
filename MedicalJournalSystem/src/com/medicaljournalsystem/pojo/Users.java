@@ -1,6 +1,7 @@
 package com.medicaljournalsystem.pojo;
 
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -24,6 +27,8 @@ public class Users {
 	@Column
 	private String email;
 
+	@NotNull
+	@Size(min = 5, max = 10, message = "Password should be between 5 - 10 charactes")
 	@Column
 	private String password;
 

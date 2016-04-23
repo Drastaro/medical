@@ -30,6 +30,7 @@
 		<div class="header">Register User</div>
 
 		<form:form method="post" modelAttribute="command" action="submituser">
+			<form:errors path="*" cssClass="errorblock" element="div" />
 			<div class="body bg-gray">
 				<form:hidden path="id" />
 				<div class="form-group">
@@ -39,10 +40,13 @@
 				<div class="form-group">
 					<input type="password" name="password" class="form-control"
 						placeholder="Password" />
+					<form:errors path="password" cssClass="error" />
+
 				</div>
 				<div class="form-group">
 					<input type="password" name="confirm-password" class="form-control"
 						placeholder="Confirm Password" />
+
 				</div>
 				<!-- Split button -->
 				<div class="btn-group">

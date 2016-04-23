@@ -72,7 +72,7 @@ public class MedicalJournalController {
 		}
 
 		medicalJournalDao.saveOrUpdate(journal);
-		return new ModelAndView("redirect:/medicaljournals/");
+		return new ModelAndView("redirect:/medicaljournals/list");
 
 	}
 

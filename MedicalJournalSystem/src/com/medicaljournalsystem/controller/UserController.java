@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -67,7 +68,10 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/users/submituser", method = RequestMethod.POST)
-	public ModelAndView saveUser(@ModelAttribute("command") Users user, BindingResult result, ModelMap model) {
+	public ModelAndView saveUser(@Valid @ModelAttribute("command") Users user, BindingResult result, ModelMap model) {
+		if (result.hasErrors()) {
+			return new ModelAndView("redirect:/users/add");
+		}
 		userDao.saveOrUpdate(user);
 		return new ModelAndView("redirect:/users/list");
 	}

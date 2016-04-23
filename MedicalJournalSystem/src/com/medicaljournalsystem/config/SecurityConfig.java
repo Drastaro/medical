@@ -29,11 +29,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.hasAuthority("PUBLISHER").antMatchers("/users/add").hasAuthority("PUBLISHER")
 				.antMatchers("/users/delete/*").hasAuthority("PUBLISHER").antMatchers("/medicaljournals/list")
 				.hasAuthority("PUBLISHER").antMatchers("medicaljournals/add").hasAuthority("PUBLISHER")
-				.antMatchers("medicaljournals/edit/*").hasAuthority("PUBLISHER").antMatchers("medicaljournals/submit")
-				.hasAuthority("PUBLISHER").antMatchers("medicaljournals/search").authenticated()
-				.antMatchers("/medicaljournals/subscribe").authenticated().and().formLogin().loginPage("/login")
-				.loginProcessingUrl("/j_spring_security_check").usernameParameter("email").passwordParameter("password")
-				.and().csrf().and().exceptionHandling().accessDeniedPage("/500");
+				.antMatchers("medicaljournals/edit/*").hasAuthority("PUBLISHER").antMatchers("rest/journals")
+				.hasAuthority("PUBLISHER").antMatchers("medicaljournals/submit").hasAuthority("PUBLISHER")
+				.antMatchers("medicaljournals/search").authenticated().antMatchers("/medicaljournals/subscribe")
+				.authenticated().and().formLogin().loginPage("/login").loginProcessingUrl("/j_spring_security_check")
+				.usernameParameter("email").passwordParameter("password").and().csrf().and().exceptionHandling()
+				.accessDeniedPage("/500");
 
 	}
 }
