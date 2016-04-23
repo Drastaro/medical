@@ -17,6 +17,8 @@ import javax.persistence.Transient;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "medical_journal")
 public class MedicalJournal {
@@ -81,6 +83,7 @@ public class MedicalJournal {
 		this.releaseDate = releaseDate;
 	}
 
+	@JsonIgnore
 	public String getFilePath() {
 		return filePath;
 	}
@@ -89,6 +92,7 @@ public class MedicalJournal {
 		this.filePath = filePath;
 	}
 
+	@JsonIgnore
 	public String getFileName() {
 		return fileName;
 	}
@@ -97,6 +101,7 @@ public class MedicalJournal {
 		this.fileName = fileName;
 	}
 
+	@JsonIgnore
 	public MultipartFile getPdfFile() {
 		return pdfFile;
 	}
@@ -105,6 +110,7 @@ public class MedicalJournal {
 		this.pdfFile = pdfFile;
 	}
 
+	@JsonIgnore
 	public Set<Users> getUsers() {
 		return users;
 	}
@@ -113,6 +119,7 @@ public class MedicalJournal {
 		this.users = users;
 	}
 
+	@JsonIgnore
 	public boolean isSubscribedByCurrentUser() {
 		return subscribedByCurrentUser;
 	}
