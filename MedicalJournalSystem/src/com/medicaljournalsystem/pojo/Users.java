@@ -27,10 +27,15 @@ public class Users {
 	@Column
 	private String email;
 
+	@Column
 	@NotNull
 	@Size(min = 5, max = 10, message = "Password should be between 5 - 10 charactes")
-	@Column
 	private String password;
+
+	@Column
+	@NotNull
+	@Size(min = 5, max = 10)
+	private String confirmPassword;
 
 	@Column(name = "user_role")
 	private String userRole;
@@ -66,6 +71,14 @@ public class Users {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 
 	public String getUserRole() {
