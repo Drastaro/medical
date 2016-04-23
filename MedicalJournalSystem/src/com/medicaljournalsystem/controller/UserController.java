@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -47,12 +48,14 @@ public class UserController {
 		return "redirect:/login?logout";
 	}
 
+	@Secured("ROLE_PUBLISHER")
 	@RequestMapping(value = "/username", method = RequestMethod.GET)
 	@ResponseBody
 	public String currentUserName(Authentication authentication) {
 		return authentication.getName();
 	}
 
+	@Secured("ROLE_PUBLISHER")
 	@RequestMapping(value = "/users/add", method = RequestMethod.GET)
 	public ModelAndView createUser() {
 
@@ -60,6 +63,7 @@ public class UserController {
 
 	}
 
+	@Secured("ROLE_PUBLISHER")
 	@RequestMapping("/users/delete/{id}")
 	public String removeMedicalJournal(@PathVariable("id") int id) {
 
@@ -67,6 +71,7 @@ public class UserController {
 		return "redirect:/users/list";
 	}
 
+	@Secured("ROLE_PUBLISHER")
 	@RequestMapping(value = "/users/submituser", method = RequestMethod.POST)
 	public ModelAndView saveUser(@Valid @ModelAttribute("command") Users user, BindingResult result, ModelMap model) {
 		if (result.hasErrors()) {
@@ -76,6 +81,7 @@ public class UserController {
 		return new ModelAndView("redirect:/users/list");
 	}
 
+	@Secured("ROLE_PUBLISHER")
 	@RequestMapping(value = "/users/list", method = RequestMethod.GET)
 	public ModelAndView listUsers() {
 

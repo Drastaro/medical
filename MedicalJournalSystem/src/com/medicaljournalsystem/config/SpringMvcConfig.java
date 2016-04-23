@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -30,6 +31,7 @@ import com.medicaljournalsystem.pojo.Users;
 @EnableWebMvc
 @ComponentScan(basePackages = "com.medicaljournalsystem")
 @EnableTransactionManagement
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 
 	@Bean

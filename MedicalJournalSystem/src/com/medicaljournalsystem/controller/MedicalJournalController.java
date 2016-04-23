@@ -11,7 +11,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -39,12 +39,14 @@ public class MedicalJournalController {
 	@Autowired
 	private UserDAO userDao;
 
+	@Secured("ROLE_PUBLISHER")
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView createJournal(Model model) {
 		model.addAttribute("journal", new MedicalJournal());
 		return new ModelAndView("medicaljournal/createForm", "model", model);
 	}
 
+	@Secured("ROLE_PUBLISHER")
 	@RequestMapping("/edit/{id}")
 	public ModelAndView editMedicalJournal(@PathVariable("id") int id, Model model) {
 		model.addAttribute("journal", medicalJournalDao.get(id));
@@ -52,6 +54,7 @@ public class MedicalJournalController {
 	}
 
 	// For both add and update
+	@Secured("ROLE_PUBLISHER")
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
 	public ModelAndView saveJournal(@ModelAttribute("journal") MedicalJournal journal, BindingResult result,
 			ModelMap model, HttpServletRequest request) throws IOException {
@@ -76,6 +79,7 @@ public class MedicalJournalController {
 
 	}
 
+	@Secured("ROLE_PUBLISHER")
 	@RequestMapping("/delete/{id}")
 	public String removeMedicalJournal(@PathVariable("id") int id) {
 
@@ -83,7 +87,7 @@ public class MedicalJournalController {
 		return "redirect:/medicaljournals/list";
 	}
 
-	@PreAuthorize("hasAuthority('ADMIN')")
+	@Secured("ROLE_PUBLISHER")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView listJournals() {
 
