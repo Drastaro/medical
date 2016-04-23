@@ -9,7 +9,10 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -32,7 +35,11 @@ import com.medicaljournalsystem.pojo.Users;
 @ComponentScan(basePackages = "com.medicaljournalsystem")
 @EnableTransactionManagement
 @EnableGlobalMethodSecurity(securedEnabled = true)
+@PropertySource("classpath:dbSettings.properties")
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {
+
+	@Autowired
+	private Environment environment;
 
 	@Bean
 	public ViewResolver getViewResolver() {
@@ -61,10 +68,10 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 	public DataSource getDataSource() {
 
 		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/medical_journal");
-		dataSource.setUsername("root");
-		dataSource.setPassword("");
+		dataSource.setDriverClassName(environment.getProperty("db.driver"));
+		dataSource.setUrl(environment.getProperty("db.url"));
+		dataSource.setUsername(environment.getProperty("db.user"));
+		dataSource.setPassword(environment.getProperty("db.password"));
 
 		return dataSource;
 	}
@@ -108,6 +115,11 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 		messageSource.setBasename("messages");
 		return messageSource;
+	}
+
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+		return new PropertySourcesPlaceholderConfigurer();
 	}
 
 }
