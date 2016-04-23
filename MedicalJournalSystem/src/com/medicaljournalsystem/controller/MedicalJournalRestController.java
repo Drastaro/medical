@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.medicaljournalsystem.dao.MedicalJournalDAO;
 import com.medicaljournalsystem.dao.UserDAO;
-import com.medicaljournalsystem.dao.medicaljournal.MedicalJournalDAO;
 import com.medicaljournalsystem.pojo.MedicalJournal;
 
 @Controller
 @RequestMapping(value = "rest")
-public class RestController {
+public class MedicalJournalRestController {
 
 	@Autowired
 	private MedicalJournalDAO medicalJournalDao;

@@ -18,9 +18,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.medicaljournalsystem.dao.MedicalJournalDAOImpl;
 import com.medicaljournalsystem.dao.UserDAO;
 import com.medicaljournalsystem.dao.UserDAOImpl;
-import com.medicaljournalsystem.dao.medicaljournal.MedicalJournalDAOImpl;
 import com.medicaljournalsystem.pojo.MedicalJournal;
 import com.medicaljournalsystem.pojo.Users;
 
@@ -60,7 +60,7 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/medical_journal");
 		dataSource.setUsername("root");
-		dataSource.setPassword("");
+		dataSource.setPassword("mircea");
 
 		return dataSource;
 	}

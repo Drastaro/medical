@@ -2,19 +2,16 @@
 <html class="bg-black">
 <head>
 <meta charset="UTF-8">
-<title>AdminLTE | Log in</title>
+<title>Medical Journal System</title>
 <meta
 	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
 	name='viewport'>
-<!-- bootstrap 3.0.2 -->
 <link
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css" />
-<!-- font Awesome -->
 <link
 	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css" />
-<!-- Theme style -->
 <link
 	href="${pageContext.request.contextPath}/resources/css/AdminLTE.css"
 	rel="stylesheet" type="text/css" />
@@ -41,7 +38,7 @@
 				</div>
 			</c:if>
 			<c:if test="${param.logout != null}">
-				<div class="alert alert-success">
+				<div class="alert alert-info">
 					<p>You have been logged out successfully.</p>
 				</div>
 			</c:if>
@@ -54,44 +51,21 @@
 					<input type="password" name="password" class="form-control"
 						placeholder="Password" />
 				</div>
-				<div class="form-group">
-					<input type="checkbox" name="remember_me" /> Remember me
-				</div>
 			</div>
 			<div class="footer">
-				<button type="submit" class="btn bg-olive btn-block">Sign
-					me in</button>
+				<button type="submit" class="btn btn-block btn-primary">Sign me in</button>
 
-				<p>
-					<a href="#">I forgot my password</a>
-				</p>
-
-				<a href="register" class="text-center">Register a new membership</a>
 			</div>
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
 		</form>
 
-		<div class="margin text-center">
-			<span>Sign in using social networks</span> <br />
-			<button class="btn bg-light-blue btn-circle">
-				<i class="fa fa-facebook"></i>
-			</button>
-			<button class="btn bg-aqua btn-circle">
-				<i class="fa fa-twitter"></i>
-			</button>
-			<button class="btn bg-red btn-circle">
-				<i class="fa fa-google-plus"></i>
-			</button>
-
-		</div>
+		
 	</div>
 
 
-	<!-- jQuery 2.0.2 -->
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-	<!-- Bootstrap -->
 	<script
 		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"
 		type="text/javascript"></script>

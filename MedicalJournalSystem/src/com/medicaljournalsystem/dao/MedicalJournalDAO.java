@@ -1,4 +1,4 @@
-package com.medicaljournalsystem.dao.medicaljournal;
+package com.medicaljournalsystem.dao;
 
 import java.util.List;
 

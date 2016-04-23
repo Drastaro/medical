@@ -2,23 +2,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>AdminLTE | 404 Page not found</title>
+<title>Medical Journal System</title>
 <meta
 	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
 	name='viewport'>
-<!-- bootstrap 3.0.2 -->
 <link
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css" />
-<!-- font Awesome -->
 <link
 	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css" />
-<!-- Ionicons -->
-<link
-	href="${pageContext.request.contextPath}/resources/css/ionicons.min.css"
-	rel="stylesheet" type="text/css" />
-<!-- Theme style -->
 <link
 	href="${pageContext.request.contextPath}/resources/css/AdminLTE.css"
 	rel="stylesheet" type="text/css" />
@@ -48,42 +41,20 @@
 					<a href='/.html'>return to dashboard</a> or try using the search
 					form.
 				</p>
-				<form class='search-form'>
-					<div class='input-group'>
-						<input type="text" name="search" class='form-control'
-							placeholder="Search" />
-						<div class="input-group-btn">
-							<button type="submit" name="submit" class="btn btn-primary">
-								<i class="fa fa-search"></i>
-							</button>
-						</div>
-					</div>
-					<!-- /.input-group -->
-				</form>
 			</div>
-			<!-- /.error-content -->
 		</div>
-		<!-- /.error-page -->
 
 	</section>
-	<!-- /.content -->
 
 
 
-	<!-- jQuery 2.0.2 -->
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-	<!-- Bootstrap -->
 	<script
 		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"
 		type="text/javascript"></script>
-	<!-- AdminLTE App -->
 	<script
 		src="${pageContext.request.contextPath}/resources/js/AdminLTE/app.js"
-		type="text/javascript"></script>
-	<!-- AdminLTE for demo purposes -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/AdminLTE/demo.js"
 		type="text/javascript"></script>
 </body>
 </html>

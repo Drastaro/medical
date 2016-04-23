@@ -4,16 +4,12 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>AdminLTE | Dashboard</title>
+        <title>Medical Journal System</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-        <!-- bootstrap 3.0.2 -->
         <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <!-- font Awesome -->
         <link href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <!-- Ionicons -->
-        <link href="${pageContext.request.contextPath}/resources/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-        <!-- Theme style -->
         <link href="${pageContext.request.contextPath}/resources/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+		
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/datepicker/datepicker3.css">
   
   
@@ -32,10 +28,8 @@
 		<h1>
 			Upload New Medical Journal
 		</h1>
-		
 	</section>
 
-	<!-- Main content -->
 	<section class="content">
 		<div class="row">
 			<!-- left column -->
@@ -74,55 +68,35 @@
 								<form:input type="text" class="form-control pull-right" name="releaseDate"
 									id="releaseDate" path="releaseDate" />
 							</div>
-							<!-- /.input group -->
 						</div>
-						<!-- /.form group -->
-							
-						</div>
-						
-
+					</div>
 						<div class="box-footer">
 							<button type="submit" class="btn btn-primary">Submit</button>
+							<a href="${pageContext.request.contextPath}/medicaljournals/list" class="btn btn-warning">Back to list</a>
 						</div>
 					</form:form>
 				</div>
-				
-
-
 			</div>
-		
-			
 		</div>
-		<!-- /.row -->
 	</section>
-	<!-- /.content -->
-	<!-- jQuery 2.0.2 -->
+
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-            <!-- Bootstrap -->
         <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
-        <!-- AdminLTE App -->
         <script src="${pageContext.request.contextPath}/resources/js/AdminLTE/app.js" type="text/javascript"></script>
      
-   
-   <!-- bootstrap datepicker -->
-        <!-- date-range-picker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/daterangepicker/daterangepicker.js"></script>
-<!-- bootstrap datepicker -->
-<script src="${pageContext.request.contextPath}/resources/js/plugins/datepicker/bootstrap-datepicker.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/plugins/daterangepicker/daterangepicker.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/plugins/datepicker/bootstrap-datepicker.js"></script>
    
    
-   <script type="text/javascript">
-		$(function() {
-			//Date picker
-		    $('#releaseDate').datepicker({
-		      autoclose: true
-		    });
-
-		});
-	</script>
-   
-   
-   
+	   <script type="text/javascript">
+			$(function() {
+				//Date picker
+			    $('#releaseDate').datepicker({
+			      autoclose: true
+			    });
+	
+			});
+		</script>
     </body>
 </html>

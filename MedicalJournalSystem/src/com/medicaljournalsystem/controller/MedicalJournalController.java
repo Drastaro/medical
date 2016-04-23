@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.medicaljournalsystem.dao.MedicalJournalDAO;
 import com.medicaljournalsystem.dao.UserDAO;
-import com.medicaljournalsystem.dao.medicaljournal.MedicalJournalDAO;
 import com.medicaljournalsystem.pojo.MedicalJournal;
 import com.medicaljournalsystem.pojo.Users;
 
@@ -80,7 +80,7 @@ public class MedicalJournalController {
 	public String removeMedicalJournal(@PathVariable("id") int id) {
 
 		medicalJournalDao.delete(id);
-		return "redirect:/medicaljournals/";
+		return "redirect:/medicaljournals/list";
 	}
 
 	@PreAuthorize("hasAuthority('ADMIN')")
