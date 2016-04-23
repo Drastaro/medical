@@ -24,11 +24,11 @@ public class AuthenticationService implements UserDetailsService {
 
 		if (user != null) {
 
-			if (user.getUserRole().equalsIgnoreCase("PUBLISHER")) {
+			if (user.getUserRole().equalsIgnoreCase("ROLE_PUBLISHER")) {
 
 				try {
 					Collection<GrantedAuthority> userAuthorities = new ArrayList<GrantedAuthority>();
-					userAuthorities.add(new SimpleGrantedAuthority("PUBLISHER"));
+					userAuthorities.add(new SimpleGrantedAuthority("ROLE_PUBLISHER"));
 					return new User(user.getEmail(), user.getPassword(), true, true, true, true, userAuthorities);
 
 				} catch (Exception e) {

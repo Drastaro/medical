@@ -53,7 +53,7 @@
 					<form:select path="userRole">
 						<label>User Role</label>
 						<form:option value="">Select Role</form:option>
-						<form:option value="PUBLISHER">PUBLISHER</form:option>
+						<form:option value="ROLE_PUBLISHER">PUBLISHER</form:option>
 						<form:option value="USER">USER</form:option>
 					</form:select>
 				</div>

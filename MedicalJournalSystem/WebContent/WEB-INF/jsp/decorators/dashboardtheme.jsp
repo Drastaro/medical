@@ -50,7 +50,7 @@
 									Journals Search</span>
 						</a></li>
 					</sec:authorize>
-					<sec:authorize access="isAuthenticated()">
+					<sec:authorize access="hasAnyRole('ROLE_PUBLISHER')">
 						<li><a
 							href="${pageContext.request.contextPath}/medicaljournals/list">
 								<i class="fa fa-user" aria-hidden="true"></i><span>Medical
