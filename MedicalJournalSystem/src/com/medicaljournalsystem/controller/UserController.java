@@ -60,7 +60,16 @@ public class UserController {
 	public ModelAndView createUser() {
 
 		return new ModelAndView("admin/registrationForm", "command", new Users());
+	}
 
+	@Secured("ROLE_PUBLISHER")
+	@RequestMapping(value = "/users/submituser", method = RequestMethod.POST)
+	public ModelAndView saveUser(@Valid @ModelAttribute("command") Users user, BindingResult result, ModelMap model) {
+		if (result.hasErrors()) {
+			return new ModelAndView("admin/registrationForm");
+		}
+		userDao.saveOrUpdate(user);
+		return new ModelAndView("redirect:/users/list");
 	}
 
 	@Secured("ROLE_PUBLISHER")
@@ -69,16 +78,6 @@ public class UserController {
 
 		userDao.delete(id);
 		return "redirect:/users/list";
-	}
-
-	@Secured("ROLE_PUBLISHER")
-	@RequestMapping(value = "/users/submituser", method = RequestMethod.POST)
-	public ModelAndView saveUser(@Valid @ModelAttribute("command") Users user, BindingResult result, ModelMap model) {
-		if (result.hasErrors()) {
-			return new ModelAndView("redirect:/users/add");
-		}
-		userDao.saveOrUpdate(user);
-		return new ModelAndView("redirect:/users/list");
 	}
 
 	@Secured("ROLE_PUBLISHER")
