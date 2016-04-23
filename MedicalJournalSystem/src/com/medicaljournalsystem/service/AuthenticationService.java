@@ -27,7 +27,6 @@ public class AuthenticationService implements UserDetailsService {
 			if (user.getUserRole().equalsIgnoreCase("PUBLISHER")) {
 
 				try {
-
 					Collection<GrantedAuthority> userAuthorities = new ArrayList<GrantedAuthority>();
 					userAuthorities.add(new SimpleGrantedAuthority("PUBLISHER"));
 					return new User(user.getEmail(), user.getPassword(), true, true, true, true, userAuthorities);
