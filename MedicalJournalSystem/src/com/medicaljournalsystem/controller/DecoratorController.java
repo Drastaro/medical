@@ -15,4 +15,11 @@ public class DecoratorController {
 	public String pages(@PathVariable(value = "decorator") String decorator) {
 		return "decorators/" + decorator;
 	}
+
+	@RequestMapping(value = "/500", method = RequestMethod.GET)
+	public String errorPage() {
+
+		return "pages/500";
+
+	}
 }

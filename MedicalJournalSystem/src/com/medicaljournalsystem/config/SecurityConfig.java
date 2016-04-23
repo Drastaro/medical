@@ -25,15 +25,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/", "/home").authenticated().antMatchers("/listusers")
-				.hasAuthority("USER").antMatchers("/medicaljournal/list/").hasAuthority("USER")
-				.antMatchers("/medicaljournals/add").hasAuthority("USER").antMatchers("/medicaljournals/edit")
-				.hasAuthority("USER").antMatchers("/medicaljournals/submit").hasAuthority("USER")
-				.antMatchers("/medicaljournals/delete").hasAuthority("USER").antMatchers("/medicaljournals/search")
-				.authenticated().antMatchers("/medicaljournals/subscribe").authenticated().and().formLogin()
-				.loginPage("/login").loginProcessingUrl("/j_spring_security_check").usernameParameter("email")
-				.passwordParameter("password").and().csrf().and().exceptionHandling()
-				.accessDeniedPage("/pages/examples/404");
+		http.authorizeRequests().antMatchers("/", "/home").authenticated().antMatchers("/users/list")
+				.hasAuthority("PUBLISHER").antMatchers("/users/add").hasAuthority("PUBLISHER")
+				.antMatchers("/users/delete/*").hasAuthority("PUBLISHER").antMatchers("/medicaljournals/list")
+				.hasAuthority("PUBLISHER").antMatchers("medicaljournals/add").hasAuthority("PUBLISHER")
+				.antMatchers("medicaljournals/edit/*").hasAuthority("PUBLISHER").antMatchers("medicaljournals/submit")
+				.hasAuthority("PUBLISHER").antMatchers("medicaljournals/search").authenticated()
+				.antMatchers("/medicaljournals/subscribe").authenticated().and().formLogin().loginPage("/login")
+				.loginProcessingUrl("/j_spring_security_check").usernameParameter("email").passwordParameter("password")
+				.and().csrf().and().exceptionHandling().accessDeniedPage("/500");
 
 	}
 }

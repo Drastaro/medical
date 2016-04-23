@@ -44,9 +44,20 @@
 					<input type="password" name="confirm-password" class="form-control"
 						placeholder="Confirm Password" />
 				</div>
-				<div class="footer">
+				<!-- Split button -->
+				<div class="btn-group">
+					<form:select path="userRole">
+						<label>User Role</label>
+						<form:option value="">Select Role</form:option>
+						<form:option value="PUBLISHER">PUBLISHER</form:option>
+						<form:option value="USER">USER</form:option>
+					</form:select>
+				</div>
 
-					<button type="submit" value="Save" class="btn btn-block btn-primary">Register</button>
+				<div class="footer">
+					<br>
+					<button type="submit" value="Save"
+						class="btn btn-block btn-primary">Register</button>
 
 				</div>
 			</div>

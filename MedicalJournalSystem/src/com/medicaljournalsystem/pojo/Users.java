@@ -1,7 +1,6 @@
 package com.medicaljournalsystem.pojo;
 
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +27,7 @@ public class Users {
 	@Column
 	private String password;
 
-	@Column(name = "user_roles")
+	@Column(name = "user_role")
 	private String userRole;
 
 	@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
