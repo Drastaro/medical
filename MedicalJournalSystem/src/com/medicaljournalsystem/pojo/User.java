@@ -29,8 +29,9 @@ public class User {
 	private String email;
 
 	@Column
-	@NotNull
-	@Size(min = 5, max = 10, message = "Password should be between 5 - 10 charactes")
+	// @NotNull
+	// @Size(min = 5, max = 10, message = "Password should be between 5 - 10
+	// charactes")
 	private String password;
 
 	@Transient

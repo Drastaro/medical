@@ -8,6 +8,7 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.medicaljournalsystem.pojo.User;
@@ -17,6 +18,9 @@ public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public UserDAOImpl() {
 
@@ -60,6 +64,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	@Transactional
 	public void saveOrUpdate(User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		sessionFactory.getCurrentSession().saveOrUpdate(user);
 
 	}

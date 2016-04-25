@@ -46,9 +46,7 @@ public class AuthenticationService implements UserDetailsService {
 					throw new UsernameNotFoundException("Username " + user.getEmail() + " not found!");
 				}
 			}
-
 		}
 		return null;
 	}
-
 }

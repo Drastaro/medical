@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
@@ -26,6 +28,8 @@ import com.medicaljournalsystem.pojo.User;
 
 @Controller
 public class UserController {
+
+	private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	private UserDAO userDao;
@@ -65,7 +69,9 @@ public class UserController {
 	@Secured("ROLE_PUBLISHER")
 	@RequestMapping(value = "/users/submituser", method = RequestMethod.POST)
 	public ModelAndView saveUser(@Valid @ModelAttribute("command") User user, BindingResult result, ModelMap model) {
+		logger.debug("UserController/users/submituser called!");
 		if (result.hasErrors()) {
+
 			return new ModelAndView("admin/registrationForm");
 		}
 		userDao.saveOrUpdate(user);
