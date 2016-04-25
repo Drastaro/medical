@@ -39,7 +39,7 @@ public class MedicalJournal {
 	private String fileName;
 
 	@ManyToMany(mappedBy = "subscribedMedicalJournals", fetch = FetchType.EAGER)
-	private Set<Users> users = new HashSet<Users>();
+	private Set<User> users = new HashSet<User>();
 
 	@Transient
 	private MultipartFile pdfFile;
@@ -111,11 +111,11 @@ public class MedicalJournal {
 	}
 
 	@JsonIgnore
-	public Set<Users> getUsers() {
+	public Set<User> getUsers() {
 		return users;
 	}
 
-	public void setUsers(Set<Users> users) {
+	public void setUsers(Set<User> users) {
 		this.users = users;
 	}
 

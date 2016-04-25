@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.medicaljournalsystem.dao.UserDAO;
-import com.medicaljournalsystem.pojo.Users;
+import com.medicaljournalsystem.pojo.User;
 
 @Controller
 public class UserController {
@@ -59,12 +59,12 @@ public class UserController {
 	@RequestMapping(value = "/users/add", method = RequestMethod.GET)
 	public ModelAndView createUser() {
 
-		return new ModelAndView("admin/registrationForm", "command", new Users());
+		return new ModelAndView("admin/registrationForm", "command", new User());
 	}
 
 	@Secured("ROLE_PUBLISHER")
 	@RequestMapping(value = "/users/submituser", method = RequestMethod.POST)
-	public ModelAndView saveUser(@Valid @ModelAttribute("command") Users user, BindingResult result, ModelMap model) {
+	public ModelAndView saveUser(@Valid @ModelAttribute("command") User user, BindingResult result, ModelMap model) {
 		if (result.hasErrors()) {
 			return new ModelAndView("admin/registrationForm");
 		}
@@ -84,7 +84,7 @@ public class UserController {
 	@RequestMapping(value = "/users/list", method = RequestMethod.GET)
 	public ModelAndView listUsers() {
 
-		List<Users> listUsers = userDao.list();
+		List<User> listUsers = userDao.list();
 		ModelMap model = new ModelMap();
 		model.put("users", listUsers);
 

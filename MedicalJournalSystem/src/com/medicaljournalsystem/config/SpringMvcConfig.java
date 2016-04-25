@@ -28,7 +28,7 @@ import com.medicaljournalsystem.dao.MedicalJournalDAOImpl;
 import com.medicaljournalsystem.dao.UserDAO;
 import com.medicaljournalsystem.dao.UserDAOImpl;
 import com.medicaljournalsystem.pojo.MedicalJournal;
-import com.medicaljournalsystem.pojo.Users;
+import com.medicaljournalsystem.pojo.User;
 
 @Configuration
 @EnableWebMvc
@@ -81,7 +81,7 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 	public SessionFactory getSessionFactory(DataSource dataSource) {
 
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-		sessionBuilder.addAnnotatedClasses(Users.class);
+		sessionBuilder.addAnnotatedClasses(User.class);
 		sessionBuilder.addAnnotatedClasses(MedicalJournal.class);
 		sessionBuilder.setProperty("hibernate.show_sql", "true");
 		sessionBuilder.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");

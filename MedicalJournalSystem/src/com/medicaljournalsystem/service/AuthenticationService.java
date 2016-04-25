@@ -15,12 +15,12 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService implements UserDetailsService {
 
 	@Autowired
-	private UsersService userService;
+	private UserService userService;
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-		com.medicaljournalsystem.pojo.Users user = userService.findByEmail(email);
+		com.medicaljournalsystem.pojo.User user = userService.findByEmail(email);
 
 		if (user != null) {
 

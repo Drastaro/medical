@@ -2,17 +2,17 @@ package com.medicaljournalsystem.dao;
 
 import java.util.List;
 
-import com.medicaljournalsystem.pojo.Users;
+import com.medicaljournalsystem.pojo.User;
 
 public interface UserDAO {
 
-	public List<Users> list();
+	public List<User> list();
 
-	public Users getByID(int id);
+	public User getByID(int id);
 
-	public Users getByEmail(String email);
+	public User getByEmail(String email);
 
-	public void saveOrUpdate(Users user);
+	public void saveOrUpdate(User user);
 
 	public void delete(int id);
 

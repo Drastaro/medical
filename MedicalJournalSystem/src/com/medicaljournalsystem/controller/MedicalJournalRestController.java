@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.medicaljournalsystem.dao.MedicalJournalDAO;
 import com.medicaljournalsystem.dao.UserDAO;
 import com.medicaljournalsystem.pojo.MedicalJournal;
-import com.medicaljournalsystem.pojo.Users;
+import com.medicaljournalsystem.pojo.User;
 
 @Controller
 @RequestMapping(value = "rest")
@@ -30,7 +30,7 @@ public class MedicalJournalRestController {
 	@RequestMapping(value = "/journals", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Set<MedicalJournal> listJournals(Principal principal) {
 
-		Users currentUser = userDao.getByEmail(principal.getName());
+		User currentUser = userDao.getByEmail(principal.getName());
 		if (currentUser == null) {
 			return null;
 		}

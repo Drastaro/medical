@@ -10,7 +10,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.medicaljournalsystem.pojo.Users;
+import com.medicaljournalsystem.pojo.User;
 
 @Repository("userDao")
 public class UserDAOImpl implements UserDAO {
@@ -28,8 +28,8 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	@Transactional
-	public List<Users> list() {
-		Criteria cr = sessionFactory.getCurrentSession().createCriteria(Users.class);
+	public List<User> list() {
+		Criteria cr = sessionFactory.getCurrentSession().createCriteria(User.class);
 		List results = cr.list();
 
 		return results;
@@ -37,29 +37,29 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	@Transactional
-	public Users getByID(int id) {
-		Criteria cr = sessionFactory.getCurrentSession().createCriteria(Users.class);
+	public User getByID(int id) {
+		Criteria cr = sessionFactory.getCurrentSession().createCriteria(User.class);
 		cr.add(Restrictions.eq("id", id)).uniqueResult();
 		List results = cr.list();
-		Users user = (Users) results.get(0);
+		User user = (User) results.get(0);
 
 		return user;
 	}
 
 	@Override
 	@Transactional
-	public Users getByEmail(String email) {
-		Criteria cr = sessionFactory.getCurrentSession().createCriteria(Users.class);
+	public User getByEmail(String email) {
+		Criteria cr = sessionFactory.getCurrentSession().createCriteria(User.class);
 		cr.add(Restrictions.eq("email", email)).uniqueResult();
 		List results = cr.list();
-		Users user = (Users) results.get(0);
+		User user = (User) results.get(0);
 
 		return user;
 	}
 
 	@Override
 	@Transactional
-	public void saveOrUpdate(Users user) {
+	public void saveOrUpdate(User user) {
 		sessionFactory.getCurrentSession().saveOrUpdate(user);
 
 	}
@@ -67,7 +67,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	@Transactional
 	public void delete(int id) {
-		Users userToDelete = new Users();
+		User userToDelete = new User();
 		userToDelete.setId(id);
 		sessionFactory.getCurrentSession().delete(userToDelete);
 
