@@ -28,10 +28,10 @@ public class User {
 	@Column
 	private String email;
 
-	@Column
 	// @NotNull
 	// @Size(min = 5, max = 10, message = "Password should be between 5 - 10
 	// charactes")
+	@Column(length = 255)
 	private String password;
 
 	@Transient
